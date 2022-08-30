@@ -10,7 +10,7 @@ from math import sqrt
 def kernelfunction(x:np.ndarray,xstar:np.ndarray):
     matrix = []
     def _kernel(x_,xstar_,sigma=1):
-        return 1/(sqrt(2*pi)*(sigma**2)) * exp((x_-xstar_)**2)
+        return 1/(sqrt(2*pi)*(sigma**2)) * exp(-(x_-xstar_)**2)
     for x_ in x:
         line = []
         for xstar_ in xstar:
@@ -21,8 +21,10 @@ def kernelfunction(x:np.ndarray,xstar:np.ndarray):
 
 def getmeanandsigma(X:np.ndarray,Y:np.ndarray,xstar:np.ndarray,gamma = 1,sigma=1):
     A = kernelfunction(X,X)+sigma ** 2*np.identity(len(X))
+    # print(A)
     A_1 = np.linalg.inv(A)
     # mu(x) = 0
+    
     starxmatrix = kernelfunction(xstar,X)
     mux = starxmatrix.dot(A_1).dot(Y)
     # print(kernelfunction(xstar,xstar).shape)
