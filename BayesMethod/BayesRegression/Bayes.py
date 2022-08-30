@@ -5,23 +5,29 @@ import numpy as np
 UPPER = 10
 LOWER = -1
 from random import random
-INITSIZE = 32
+INITSIZE = 4
 X = []
 Y = []
 BATCHSAMPLENUMBER = 16
 
-EPOCH = 128
+EPOCH = 32 * 64
 def _getrandom():
     return (UPPER - LOWER) * random() + LOWER
-
+def _getinitrandom():
+    return (100 - (-10)) * random() - 1
 
 def _init():
     for _ in range(INITSIZE):
-        xvalue = _getrandom()
+        xvalue = _getinitrandom()
         X.append(xvalue)
         Y.append(func(xvalue))
 
 def acquire(mu,sigmamatrix:np.matrix,sigma = 1):
+    # print(mu.shape)
+    # print(np.diagonal(sigmamatrix).shape)
+    # print(mu.squeeze(0))
+    # exit()
+    mu = np.reshape(mu,mu.shape[1])
     evaluation = mu + np.diagonal(sigmamatrix) * sigma
     argmin = np.argmax(evaluation)
     return argmin
