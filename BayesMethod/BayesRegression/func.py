@@ -8,9 +8,9 @@ def func(x):
 #     return x**2 * (sin(x) ** 4) + random()/1024
 import numpy as np
 
-x_list = np.arange(-1,10,0.001)
-y_list = []
-for x in (x_list):
-    y_list.append(func(x))
-plt.scatter(x_list,y_list)
-plt.savefig("funcfig.png")
+# x_list = np.arange(-1,10,0.001)
+# y_list = []
+# for x in (x_list):
+#     y_list.append(func(x))
+# plt.scatter(x_list,y_list)
+# plt.savefig("funcfig.png")
